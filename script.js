@@ -14,10 +14,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Launch AgentApp function
 function launchAgentApp() {
-    // Open CREAO AgentApp in new tab
-    window.open('https://creao.com/agentapp/TMXhceRjWM', '_blank', 'noopener,noreferrer');
-
-    // Also show the embedded version for reference
+    // Show instructions for running the AgentApp
     const overlay = document.querySelector('.iframe-overlay');
     const iframe = document.getElementById('brandvoice-iframe');
 
@@ -25,15 +22,15 @@ function launchAgentApp() {
     const message = document.querySelector('.iframe-message');
     message.innerHTML = `
         <div style="text-align: center;">
-            <div style="font-size: 48px; margin-bottom: 20px;">⏳</div>
-            <h3>Opening BrandVoice AgentApp...</h3>
-            <p>The app is opening in a new tab</p>
+            <div style="font-size: 48px; margin-bottom: 20px;">🎯</div>
+            <h3>How to Run BrandVoice AgentApp</h3>
+            <p>Loading instructions...</p>
         </div>
     `;
 
     // Show instructions in iframe
     setTimeout(() => {
-        // Show instructions for users who may have popup blockers
+        // Show instructions for accessing the AgentApp
         iframe.srcdoc = `
             <!DOCTYPE html>
             <html>
@@ -168,16 +165,16 @@ function launchAgentApp() {
                     <div class="instructions">
                         <h3>📋 How to Run This AgentApp</h3>
                         <ol>
-                            <li>Access your CREAO workspace</li>
-                            <li>Navigate to AgentApps or use the AgentApp launcher</li>
-                            <li>Enter AgentApp ID: <code>TMXhceRjWM</code></li>
-                            <li>Select your workflow phase (Mirror or Match)</li>
-                            <li>Fill in the form with your content samples or draft</li>
-                            <li>Run the agentapp and get your results!</li>
+                            <li><strong>Access CREAO Platform:</strong> Go to <a href="https://creao.com" target="_blank" style="color: #667eea;">creao.com</a> and sign in</li>
+                            <li><strong>Open AgentApp:</strong> Navigate to AgentApps or use the launcher</li>
+                            <li><strong>Enter ID:</strong> Use AgentApp ID: <code>TMXhceRjWM</code></li>
+                            <li><strong>Choose Phase:</strong> Select Mirror (analyze) or Match (transform)</li>
+                            <li><strong>Fill Form:</strong> Provide content samples or draft to transform</li>
+                            <li><strong>Run & Enjoy:</strong> Get your voice analysis or transformed content!</li>
                         </ol>
-                        <a href="https://creao.com/agentapp/TMXhceRjWM" class="creao-link" target="_blank" rel="noopener noreferrer">
-                            🚀 Open in CREAO Platform
-                        </a>
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(102, 126, 234, 0.1); border-radius: 8px; border-left: 4px solid #667eea;">
+                            <strong style="color: #667eea;">💡 Pro Tip:</strong> If you're using CREAO for the first time, you may need to create an account or access your workspace first. The AgentApp ID (<code>TMXhceRjWM</code>) will work in any CREAO workspace.
+                        </div>
                     </div>
 
                     <div style="margin-top: 30px; padding: 20px; background: #f7fafc; border-radius: 12px;">
