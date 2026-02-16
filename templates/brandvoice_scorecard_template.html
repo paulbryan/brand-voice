@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandVoice Transformation - {{PROFILE_NAME}}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .comparison-panel {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .panel-header.original {
+            background: #f7fafc;
+            color: #718096;
+        }
+
+        .panel-header.transformed {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .panel-content {
+            padding: 25px;
+            line-height: 1.8;
+            color: #2d3748;
+            font-size: 15px;
+            min-height: 300px;
+        }
+
+        .changes-section {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .changes-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .changes-title::before {
+            content: '✨';
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .change-list {
+            list-style: none;
+        }
+
+        .change-item {
+            padding: 15px;
+            background: white;
+            border-left: 4px solid #667eea;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            line-height: 1.6;
+        }
+
+        .copy-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .copy-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .copy-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            color: #38a169;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .mini-scorecard {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .mini-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .mini-trait {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Content Transformed</h1>
+            <div class="subtitle">Your draft, rewritten in your brand voice</div>
+            <div class="profile-badge">Using Profile: {{PROFILE_NAME}}</div>
+        </div>
+
+        <div class="content">
+            <!-- Side-by-side comparison -->
+            <div class="comparison-grid">
+                <div class="comparison-panel">
+                    <div class="panel-header original">📝 Original Draft</div>
+                    <div class="panel-content">{{ORIGINAL_CONTENT}}</div>
+                </div>
+
+                <div class="comparison-panel">
+                    <div class="panel-header transformed">🎯 Transformed Content</div>
+                    <div class="panel-content">{{TRANSFORMED_CONTENT}}</div>
+                </div>
+            </div>
+
+            <!-- Key Changes -->
+            <div class="changes-section">
+                <div class="changes-title">Key Transformations Made</div>
+                <ul class="change-list">
+                    {{CHANGE_ITEMS}}
+                </ul>
+            </div>
+
+            <!-- Copy Button -->
+            <div class="copy-section">
+                <button class="copy-button" onclick="copyTransformed()">
+                    📋 Copy Transformed Content
+                </button>
+            </div>
+            <div class="success-message" id="successMsg">✓ Copied to clipboard!</div>
+
+            <!-- Mini Voice Profile Reference -->
+            <div class="mini-scorecard">
+                <strong>Voice Profile Used:</strong> {{PROFILE_NAME}}
+                <div class="mini-traits">
+                    {{MINI_TRAIT_BADGES}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyTransformed() {
+            const content = `{{TRANSFORMED_CONTENT_RAW}}`;
+            navigator.clipboard.writeText(content).then(() => {
+                const msg = document.getElementById('successMsg');
+                msg.style.display = 'block';
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
