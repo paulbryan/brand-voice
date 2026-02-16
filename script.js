@@ -14,6 +14,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Launch AgentApp function
 function launchAgentApp() {
+    // Open CREAO AgentApp in new tab
+    window.open('https://creao.com/agentapp/TMXhceRjWM', '_blank', 'noopener,noreferrer');
+
+    // Also show the embedded version for reference
     const overlay = document.querySelector('.iframe-overlay');
     const iframe = document.getElementById('brandvoice-iframe');
 
@@ -22,15 +26,14 @@ function launchAgentApp() {
     message.innerHTML = `
         <div style="text-align: center;">
             <div style="font-size: 48px; margin-bottom: 20px;">⏳</div>
-            <h3>Loading BrandVoice AgentApp...</h3>
-            <p>Connecting to CREAO Platform</p>
+            <h3>Opening BrandVoice AgentApp...</h3>
+            <p>The app is opening in a new tab</p>
         </div>
     `;
 
-    // Simulate loading (in production, this would load the actual AgentApp)
+    // Show instructions in iframe
     setTimeout(() => {
-        // In a real implementation, you would load the CREAO AgentApp here
-        // For demo purposes, we'll show instructions
+        // Show instructions for users who may have popup blockers
         iframe.srcdoc = `
             <!DOCTYPE html>
             <html>
@@ -172,7 +175,7 @@ function launchAgentApp() {
                             <li>Fill in the form with your content samples or draft</li>
                             <li>Run the agentapp and get your results!</li>
                         </ol>
-                        <a href="#" class="creao-link" onclick="alert('This would redirect to your CREAO workspace with the AgentApp pre-loaded'); return false;">
+                        <a href="https://creao.com/agentapp/TMXhceRjWM" class="creao-link" target="_blank" rel="noopener noreferrer">
                             🚀 Open in CREAO Platform
                         </a>
                     </div>
